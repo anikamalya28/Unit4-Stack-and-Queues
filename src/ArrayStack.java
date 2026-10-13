@@ -4,12 +4,13 @@ public class ArrayStack<T> implements Stack<T> {
 
     @SuppressWarnings("unchecked")
     public ArrayStack() {
-        items = (T[]) new Object[1];
+        items = (T[]) new Object[1000];
         n = 0;
     }
 
     @Override
     public void push(T item) {
+
         // TODO: If the array is full, double its capacity; then store item at index n and increment n.
     }
 
