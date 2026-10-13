@@ -14,7 +14,10 @@ public class LinkedListStack<T> implements Stack<T> {
 
     @Override
     public void push(T item) {
-        //Node a = new Node(T);
+        Node a = new Node();
+        Node temp = first.next;
+        a = first;
+        a.next = temp;
 
         // TODO: Create a node, link it to the old first node, and make it the new first node.
     }
