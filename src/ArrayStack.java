@@ -5,6 +5,7 @@ public class ArrayStack<T> implements Stack<T> {
     @SuppressWarnings("unchecked")
     public ArrayStack() {
         items = (T[]) new Object[1000];
+
         n = 0;
     }
 
