@@ -11,26 +11,31 @@ public class ArrayStack<T> implements Stack<T> {
 
     @Override
     public void push(T item) {
-
+        if (n >= 1000) {return;}
+        items[n++] = item;
         // TODO: If the array is full, double its capacity; then store item at index n and increment n.
     }
 
     @Override
     public T pop() {
+        n--;
+        T item = items[n];
+        items[n] = null;
         // TODO: Decrement n, save and return that item, and set the popped slot to null to avoid loitering.
-        return null;
+        return item;
     }
 
     @Override
     public boolean isEmpty() {
+
         // TODO: Return true when n is zero.
-        return false;
+        return n==0;
     }
 
     @Override
     public int size() {
         // TODO: Return the number of items currently in the stack.
-        return 0;
+        return n;
     }
 
     /**
@@ -41,7 +46,28 @@ public class ArrayStack<T> implements Stack<T> {
     public static boolean isValid(String s) {
         // TODO: Use an ArrayStack<Character> to check matching brackets. Push opening brackets;
         // for each closer, check that the most recent opener has the matching type.
-        return false;
+        ArrayStack<Character> a = new ArrayStack<>();
+        int popcounter = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '{' || s.charAt(i) == '(' || s.charAt(i) == '[') {
+                a.push(s.charAt(i));
+            } else {
+                popcounter++;
+                if (s.charAt(i) == '}' && a.pop() != '{') {
+                    return false;
+                } else if (s.charAt(i) == ')' && a.pop() != '(') {
+                    return false;
+                } else if (s.charAt(i) == ']' && a.pop() != '[') {
+                    return false;
+                }
+            }
+        }
+        /*
+        if (popcounter == 0) {
+            return false;
+        }
+        */
+        return a.isEmpty();
     }
 
     static void check(String label, Object actual, Object expected) {
