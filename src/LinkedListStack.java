@@ -17,16 +17,10 @@ public class LinkedListStack<T> implements Stack<T> {
     @Override
     public void push(T item) {
         Node a = new Node();
-        if (first == null) {
-            first = a;
-        } else {
-            Node temp = first.next;
-            a = first;
-            a.next = temp;
-        }
-        size++;
-        
-
+        a.item = item;
+        a.next = first;
+        first = a;
+        size++;        
         //done TODO: Create a node, link it to the old first node, and make it the new first node.
     }
 
@@ -66,7 +60,29 @@ public class LinkedListStack<T> implements Stack<T> {
     public static int evalRPN(String[] tokens) {
         // TODO: Use a LinkedListStack<Integer> to evaluate the tokens. For an operator,
         // pop the right operand first, then the left operand; apply the operator and push the result.
-        return 0;
+        LinkedListStack<Integer> a = new LinkedListStack<>();
+        for (int i = 0; i < tokens.length; i++) {
+            if (tokens[i].equals("+")) {
+                int right = a.pop();
+                int left = a.pop();
+                a.push(left + right);
+            } else if (tokens[i].equals("-")) {
+                int right = a.pop();
+                int left = a.pop();
+                a.push(left - right);
+            } else if (tokens[i].equals("*")) {
+                int right = a.pop();
+                int left = a.pop();
+                a.push(left * right);
+            } else if (tokens[i].equals("/")) {
+                int right = a.pop();
+                int left = a.pop();
+                a.push(left / right);
+            } else {
+                a.push(Integer.parseInt(tokens[i]));
+            }
+        }
+        return a.pop();
     }
 
     static void check(String label, Object actual, Object expected) {
