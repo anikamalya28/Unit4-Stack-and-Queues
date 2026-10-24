@@ -6,38 +6,57 @@ public class LinkedListStack<T> implements Stack<T> {
 
     private Node first;
     private int n;
+    private int size;
 
     public LinkedListStack() {
         first = null;
         n = 0;
+        size = 0;
     }
 
     @Override
     public void push(T item) {
         Node a = new Node();
-        Node temp = first.next;
-        a = first;
-        a.next = temp;
+        if (first == null) {
+            first = a;
+        } else {
+            Node temp = first.next;
+            a = first;
+            a.next = temp;
+        }
+        size++;
+        
 
-        // TODO: Create a node, link it to the old first node, and make it the new first node.
+        //done TODO: Create a node, link it to the old first node, and make it the new first node.
     }
 
     @Override
     public T pop() {
+        if (first == null) {
+            return null;
+        } else {
+            Node a = first;
+            Node temp = first.next;
+            first = temp;
+            size--;
+            return a.item;
+        }
         // TODO: Save the first item's value, move first to first.next, and return the saved value.
-        return null;
     }
 
     @Override
     public boolean isEmpty() {
-        // TODO: Return true when the first node is null.
+        if (first == null) {
+            return true;
+        }
+        //done  TODO: Return true when the first node is null.
         return false;
     }
 
     @Override
     public int size() {
-        // TODO: Return the number of items currently in the stack.
-        return 0;
+        //done TODO: Return the number of items currently in the stack.
+        return size;
     }
 
     /**
