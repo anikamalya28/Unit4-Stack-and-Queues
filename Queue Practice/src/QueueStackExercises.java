@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.Queue;
+import java.util.Stack;
 
 /**
  * Starter file for Queue & Stack Exercises 1–4.
@@ -12,8 +14,16 @@ public class QueueStackExercises {
 
     // Exercise 1: Reverse a stack using one queue.
     public static void reverseStack(Stack<Integer> s) {
-        Stack<Integer> a = new Stack<>();
-        a.push(s.pop());
+        Queue<Integer> a = new LinkedList<>();
+        
+        while (s.isEmpty() == false) {
+            a.add(s.pop());
+        }
+        while (a.isEmpty() == false) {
+            s.push(a.remove());
+        }
+
+
 
 
         // TODO: implement using one Queue as auxiliary storage.
@@ -22,7 +32,15 @@ public class QueueStackExercises {
     // Exercise 2: Reorder a queue sorted by absolute value into numeric order.
     // Must use one stack as auxiliary storage.
     public static void reorder(Queue<Integer> q) {
+        Stack<Integer> a = new ArrayStack<>();
+        //
+        for (int i = 0; i < q.size()) {
+            a.push(q.remove());
+        }
+
+
         // TODO: implement using one Stack as auxiliary storage.
+        
     }
 
     // Exercise 3: Return true if the queue is a palindrome.
